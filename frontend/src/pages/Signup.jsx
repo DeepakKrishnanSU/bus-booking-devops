@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-const VITE_API_URL = import.meta.env.VITE_API_URL;
+const API = "/api";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css"; // same styling
 
@@ -30,7 +30,7 @@ function Signup() {
 
     try {
   // ✅ CHANGE MADE HERE: Use VITE_API_URL instead of localhost
-  const response = await axios.post(`${VITE_API_URL}/api/user/signup`, {
+  const response = await axios.post(`${API}/user/signup`, {
     name: formData.name,
     email: formData.email,
     password: formData.password,

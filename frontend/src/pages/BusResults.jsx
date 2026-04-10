@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import "./BusResults.css";
-const VITE_API_URL = import.meta.env.VITE_API_URL;
+const API = "/api";
 
 function BusResults() {
   const location = useLocation();
@@ -102,7 +102,7 @@ const toggleStops = (busId) => {
 // ✅ Fetch booked seats for a specific bus and date
 const fetchBookedSeats = async (busId, date) => {
   try {
-    const res = await axios.get(`${VITE_API_URL}/api/bookings/booked-seats/${busId}/${date}`);
+    const res = await axios.get(`${API}/bookings/booked-seats/${busId}/${date}`);
     return res.data; // Array of booked seat numbers
   } catch (err) {
     console.error("Error fetching booked seats:", err);
@@ -243,7 +243,7 @@ const handleBook = async (bus) => {
   const seatCount = selectedSeats.length;
 
   try {
-    const res = await axios.post(`${VITE_API_URL}/api/bookings/book`, {
+    const res = await axios.post(`${API}/bookings/book`, {
       ticketNumber: ticket,
       userEmail,
       busId: bus._id,
@@ -292,7 +292,7 @@ const handleBook = async (bus) => {
   useEffect(() => {
     const fetchRoutes = async () => {
       try {
-        const res = await axios.get(`${VITE_API_URL}/api/routes`);
+        const res = await axios.get(`${API}/routes`);
         setRoutes(res.data);
       } catch (err) {
         console.error("Error fetching routes:", err);
@@ -313,7 +313,7 @@ useEffect(() => {
     // ✅ Fetch latest data from DB instead of using stale data
     const fetchUpdatedBuses = async () => {
       try {
-        const res = await axios.get(`${VITE_API_URL}/api/bus-schedule/search`, {
+        const res = await axios.get(`${API}/bus-schedule/search`, {
           params: { from, to, date },
         });
         setBuses(res.data);
@@ -339,7 +339,7 @@ useEffect(() => {
     setError("");
 
     try {
-      const res = await axios.get(`${VITE_API_URL}/api/bus-schedule/search`, {
+      const res = await axios.get(`${API}/bus-schedule/search`, {
         params: { from, to, date },
       });
       setBuses(res.data);

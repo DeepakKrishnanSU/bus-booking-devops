@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Feedback.css";
-const VITE_API_URL = import.meta.env.VITE_API_URL;
+const API = "/api";
 
 function Feedback() {
   const [ticketNumber, setTicketNumber] = useState("");
@@ -44,7 +44,7 @@ function Feedback() {
       ...feedback,
     };
     
-    await axios.post(`${VITE_API_URL}/api/feedback/submit`, dataToSend, { 
+    await axios.post(`${API}/feedback/submit`, dataToSend, { 
         headers: { 
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }

@@ -10,10 +10,15 @@ COPY . .
 
 RUN npm run build
 
+
 # Production stage
 FROM nginx:alpine
 
+# Copy built app
 COPY --from=build /app/dist /usr/share/nginx/html
+
+# 👇 ADD THIS (VERY IMPORTANT)
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 

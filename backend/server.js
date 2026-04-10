@@ -12,8 +12,11 @@ const busBookingRoutes = require("./routes/busBookingRoutes")
 
 const app = express();
 
-// ✅ Middleware
-app.use(cors());
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
+
 app.use(express.json());
 
 // ✅ API Routes

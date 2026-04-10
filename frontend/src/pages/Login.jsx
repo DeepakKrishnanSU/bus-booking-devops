@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-const VITE_API_URL = import.meta.env.VITE_API_URL;
+const API = "/api";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
@@ -21,7 +21,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${VITE_API_URL}/api/user/login`, formData);
+      const response = await axios.post(`${API}/user/login`, formData);
 
       if (response.status === 200) {
         const { token, user } = response.data;

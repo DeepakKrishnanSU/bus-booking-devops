@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./StatusCheck.css";
-const VITE_API_URL = import.meta.env.VITE_API_URL;
+const API = "/api";
 
 function StatusCheck() {
   const [ticketNumber, setTicketNumber] = useState("");
@@ -17,7 +17,7 @@ function StatusCheck() {
       return;
     }
     try {
-      const res = await axios.get(`${VITE_API_URL}/api/bookings/status/${ticketNumber}`);
+      const res = await axios.get(`${API}/bookings/status/${ticketNumber}`);
       setBusName(res.data.busName);
       setStartPoint(res.data.busStartLocation);
       setEndPoint(res.data.busEndLocation);

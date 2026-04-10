@@ -1,0 +1,35 @@
+- name: Configure and Deploy Bus Booking App
+  hosts: localhost
+  connection: local
+  become: yes
+
+  tasks:
+    - name: Update package list
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+
+    - name: Pull backend image
+      docker_container:
+        name: backend
+        image: bus-booking-app-main-backend
+        state: started
+        ports:
+          - "7000:7000"
+
+    - name: Pull frontend image
+      docker_container:
+        name: frontend
+        image: bus-booking-app-main-frontend
+        state: started
+        ports:
+          - "3000:80"

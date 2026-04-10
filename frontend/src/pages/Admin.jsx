@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Admin.css";
 
-const VITE_API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:7000"; // Fallback for local testing
-const API_BASE_URL = `${VITE_API_BASE_URL}/api`;
+const API_BASE_URL = "/api";
 const getAdminConfig = () => ({
   headers: { "Content-Type": "application/json", "x-user-role": "admin" },
 });
