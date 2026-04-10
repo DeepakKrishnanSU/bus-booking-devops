@@ -1,0 +1,14 @@
+[build]
+  # Base directory for npm install and build command
+  base = "frontend"
+  # Use the correct command with the CI flag to fix build failures
+  command = "CI= npm run build" 
+  # The output directory for the final files (dist is *inside* frontend)
+  # Netlify usually handles this relative path, but defining it relative to the base is cleanest.
+  publish = "dist" 
+
+[[redirects]]
+  # This rule ensures all paths are served by index.html, fixing the 404
+  from = "/*"
+  to = "/index.html"
+  status = 200
